@@ -1,6 +1,4 @@
 import { handleSessionCompleted } from "@/lib/payments";
-import { log } from "console";
-import { projectHmrIdentifiersSubscribe } from "next/dist/build/swc/generated-native";
 import { NextResponse,NextRequest } from "next/server";
 import Stripe from "stripe"
 
