@@ -1,8 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  experimental: {
-    useLightningcss: true,
+    experimental: {
+    optimizeCss: false,
   },
   // eslint:{
   //  ignoreDuringBuilds:true
