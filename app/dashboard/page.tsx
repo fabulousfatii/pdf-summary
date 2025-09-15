@@ -108,9 +108,9 @@ export default function Dashboard() {
             </div>
             
             <div className="flex gap-3">
-              <button className="bg-gradient-to-r from-pink-500 to-purple-600 text-white px-6 py-3 rounded-full font-semibold hover:from-pink-600 hover:to-purple-700 transition-all duration-200 transform hover:scale-105">
+              <Link href="/upload" className="bg-gradient-to-r from-pink-500 to-purple-600 text-white px-6 py-3 rounded-full font-semibold hover:from-pink-600 hover:to-purple-700 transition-all duration-200 transform hover:scale-105">
                 Upload New PDF
-              </button>
+              </Link >
             </div>
           </div>
         </div>

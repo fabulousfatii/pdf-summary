@@ -29,7 +29,7 @@ export default function HeroSection() {
           </p>
           
           <Link href="/dashboard"
-            className={`bg-gradient-to-r from-pink-500 to-red-500 text-white px-8 py-3 rounded-full font-semibold text-lg shadow-lg transform transition-all duration-200 
+            className={`bg-gradient-to-r from-pink-500 to-red-500 text-white px-8 py-3 rounded-full font-semibold text-lg shadow-lg transform transition-all duration-200  hover:scale-105 hover:shadow-xl
             //  isHovered ? 'scale-105 shadow-xl' : ''
             // } hover:from-pink-600 hover:to-red-600
              `}
