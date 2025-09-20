@@ -137,7 +137,7 @@ if (e.target.files && e.target.files[0]) {
 
     } catch (error) {
       console.log("Validation error:", error);
-      alert("File validation failed: " + (error as any).message);
+      // alert("File validation failed: " + (error));
       return;
     }
   }
@@ -154,7 +154,7 @@ if (e.target.files && e.target.files[0]) {
           </div>
           
           <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
-            Upload Your{' '}
+            Upload Your
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-600">
               PDF Documents
             </span>
