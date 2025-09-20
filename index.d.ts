@@ -9,3 +9,4 @@
        totalBanks:string ;
  totalCurrentBalance:number
 }
+

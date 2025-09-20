@@ -4,8 +4,7 @@ import bcrypt from "bcryptjs";
 import { NextAuthOptions, Session } from "next-auth";
 import { JWT } from "next-auth/jwt";
 import CredentialsProvider from "next-auth/providers/credentials";
-
-type Credentials = { email: string; password: string };
+import type { Credentials } from "../../../../next-auth.d.ts";
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -17,14 +16,17 @@ export const authOptions: NextAuthOptions = {
         email: { label: "email", type: "text", placeholder: "jsmith" },
         password: { label: "password", type: "password" }
       },
-      async authorize(credentials: any): Promise<{ id: string } | null> {
+      async authorize(credentials: Credentials | undefined): Promise<{ id: string } | null> {
         // Add logic here to look up the user from the credentials supplied
-        
+        if (!credentials) {
+          return null;
+        }
+
         try {
           await connectToDatabase();
           const user = await userModel.findOne({ email: credentials.email });
           console.log("email:",credentials.email)
-          
+
           if (user) {
             console.log("idhr aya")
              const isPasswordCorrect = await bcrypt.compare(credentials.password, user.get('password'));
