@@ -4,7 +4,7 @@ export interface Ipayments extends Document {
    session:string;
         priceid:  string;
         email:  string;
-        customerid:String
+        customerid:string
             
 }
 

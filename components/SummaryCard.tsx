@@ -11,7 +11,7 @@ import {
 import Markdown from 'react-markdown'
 
 
-const parseSection = (section:String)=>{
+const parseSection = (section:string)=>{
   const [title,content] = section.split("\n")
   return {title,content}
 }

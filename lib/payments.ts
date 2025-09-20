@@ -34,7 +34,7 @@ export async function handleSessionCompleted({session,stripe}:{session: Stripe.C
 }
 
 export async function createOrUpdateUser({email,fullname, customerid,priceid,status}:{
-      email:  String;
+      email:  string;
             fullname:  string,
             customerid: string,
             priceid: string,
@@ -63,7 +63,7 @@ export async function createOrUpdateUser({email,fullname, customerid,priceid,sta
     }
 }
 export async function createPayment({email,session,priceid,customerid}:{
-      email:  String;
+      email:  string;
             session: string;
             priceid: string,
             customerid: string
