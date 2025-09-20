@@ -14,8 +14,7 @@ export const POST= async(req: NextRequest)=>{
 
 
     console.log("webhook called")
-    let data;
-    let eventType;
+
     let event;
 
     try {
@@ -27,11 +26,10 @@ export const POST= async(req: NextRequest)=>{
         
     }
      catch (error) {
-        return NextResponse.json({error:"invalid signature"},{status:400})
+        return NextResponse.json({error:"invalid signature",message: error},{status:400})
         
     }
-    data= event.data
-    eventType= event.type;
+    
 
     try {
       switch (event.type) {

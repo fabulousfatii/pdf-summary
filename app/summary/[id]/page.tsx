@@ -2,7 +2,6 @@
 
 import SummaryCard from "@/components/SummaryCard";
 import { fetchSummary } from "@/lib/summariesFunction";
-import Markdown from "react-markdown";
 
 export default async  function SummaryPage(props: { params: { id: string } }) {
 

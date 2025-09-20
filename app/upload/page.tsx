@@ -4,7 +4,6 @@ import React, { useState, useRef } from 'react';
 import { Upload, FileText, X, CheckCircle, AlertCircle } from 'lucide-react';
 import { z } from 'zod';
 import { useUploadThing } from '@/lib/uploadthing';
-import { pdfExtractFileToText } from '@/lib/langchain';
 import { generatePdfSummary, savedSummary } from '@/actions/upload-actions';
 import { useSession } from "next-auth/react";
 import { User } from "next-auth";
@@ -18,7 +17,6 @@ interface UploadedFile {
 }
 
 export default function PDFUploadPage() {
-  const [isDragging, setIsDragging] = useState<boolean>(false);
   const [selectedFile, setSelectedFile] = useState<UploadedFile | null>(null);
   const [isUploading, setIsUploading] = useState<boolean>(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -36,7 +34,7 @@ export default function PDFUploadPage() {
   });
 
   //uploadting library config ----> code available in its documentation
-  const { startUpload, routeConfig } = useUploadThing("PDFUploader", {
+  const { startUpload } = useUploadThing("PDFUploader", {
     onClientUploadComplete: () => {
       alert("uploaded successfully!");
     },
@@ -113,7 +111,7 @@ if (e.target.files && e.target.files[0]) {
           const summary = await generatePdfSummary(filedata);
           console.log({ summary });
           
-          const savedsummary = await savedSummary({
+          await savedSummary({
             userid:user?.id,
             fileName:filedata[0]?.name,
             fileUrl:filedata[0]?.url,
@@ -121,6 +119,8 @@ if (e.target.files && e.target.files[0]) {
             title:"title"
 
           })
+
+
 
         } else {
           console.log("Upload failed");
@@ -170,7 +170,7 @@ if (e.target.files && e.target.files[0]) {
           <div
             // onSubmit={handleSubmit}
             className={`border-2 border-dashed rounded-2xl p-12 text-center transition-all duration-300 ${
-              isDragging 
+             isUploading
                 ? 'border-pink-400 bg-pink-50 scale-105' 
                 : 'border-gray-300 bg-white hover:border-pink-300 hover:bg-pink-25'
             }`}

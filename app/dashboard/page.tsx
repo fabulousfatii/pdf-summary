@@ -1,6 +1,6 @@
 "use client"
 import React, { useEffect, useState } from 'react';
-import { FileText, Calendar, Download, Trash2, Eye, MoreVertical, Search, Filter } from 'lucide-react';
+import { FileText, Calendar, Trash2, Eye, MoreVertical, Search, Filter } from 'lucide-react';
 import axios from 'axios';
 import { useSession } from "next-auth/react";
 import { User } from "next-auth";

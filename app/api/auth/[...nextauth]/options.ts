@@ -1,8 +1,11 @@
 import connectToDatabase from "@/lib/mongodb";
 import { userModel } from "@/model/userModel";
 import bcrypt from "bcryptjs";
-import { NextAuthOptions } from "next-auth";
+import { NextAuthOptions, Session } from "next-auth";
+import { JWT } from "next-auth/jwt";
 import CredentialsProvider from "next-auth/providers/credentials";
+
+type Credentials = { email: string; password: string };
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -14,7 +17,7 @@ export const authOptions: NextAuthOptions = {
         email: { label: "email", type: "text", placeholder: "jsmith" },
         password: { label: "password", type: "password" }
       },
-      async authorize(credentials: any): Promise<any> {
+      async authorize(credentials: any): Promise<{ id: string } | null> {
         // Add logic here to look up the user from the credentials supplied
         
         try {
@@ -45,13 +48,13 @@ export const authOptions: NextAuthOptions = {
     })
   ],  
   callbacks: {
-      async session({ session, token }:{session:any, token:any}) {
+      async session({ session, token }:{session:Session, token:JWT}) {
       if(session.user){
         session.user.id= token.id as string
       }
       return session
     },
-    async jwt({ token, user}:{user:any, token:any}) {
+    async jwt({ token, user}:{user?:{id:string}, token:JWT}) {
       if(user){
         token.id = user.id
       }

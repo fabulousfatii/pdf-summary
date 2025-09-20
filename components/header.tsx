@@ -1,8 +1,7 @@
 "use client"
 
-import React, { useState, useEffect } from 'react';
+import React, { useState,  } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import { usePathname } from 'next/navigation';
 import { useSession } from "next-auth/react";
 import { User } from "next-auth";
@@ -26,7 +25,7 @@ const { data: session } = useSession()
     { name: 'upload', href: '/upload' },
   ];
 
-  const isActive = (path:any) => pathname === path;
+  const isActive = (path:string) => pathname === path;
 
   return (
     <header className="bg-white shadow-sm border-b border-gray-100">
