@@ -29,7 +29,7 @@ const SummaryCard = ({summary}:{summary:string}) => {
     <div >
       
   {sections.map((section, index)=>{
-    return(
+    return( 
       <div key={index}>
       <Markdown>{section.join('\n')}</Markdown>
       <br />
