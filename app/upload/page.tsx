@@ -161,7 +161,7 @@ if (e.target.files && e.target.files[0]) {
           </h1>
           
           <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-            Drop your PDF files here or click to browse. We'll transform them into beautiful, concise summaries in seconds.
+            Drop your PDF files here or click to browse. We will transform them into beautiful, concise summaries in seconds.
           </p>
         </div>
 
