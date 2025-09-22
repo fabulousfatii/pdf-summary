@@ -3,10 +3,16 @@
 import SummaryCard from "@/components/SummaryCard";
 import { fetchSummary } from "@/lib/summariesFunction";
 
-export default async  function SummaryPage(props: { params: { id: string } }) {
+type SummaryPageProps = {
+  params: {
+    id: string;
+  };
+};
+
+export default async function SummaryPage({ params }: SummaryPageProps) {
 
     
-    const params = await props.params;
+    // const params = await props.params;
     const id = params.id
 
 if (!id) {
