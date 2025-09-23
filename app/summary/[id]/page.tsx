@@ -3,17 +3,14 @@
 import SummaryCard from "@/components/SummaryCard";
 import { fetchSummary } from "@/lib/summariesFunction";
 
-type SummaryPageProps = {
-  params: {
-    id: string;
-  };
-};
+interface PageProps {
+  params: { id: string };
+  searchParams?: { [key: string]: string | string[] | undefined };
+}
 
-export default async function SummaryPage({ params }: SummaryPageProps) {
 
-    
-    // const params = await props.params;
-    const id = params.id
+export default async function SummaryPage({ params }: PageProps) {
+  const { id } = params;
 
 if (!id) {
         console.log("userid is not defined yet");
