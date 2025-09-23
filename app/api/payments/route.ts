@@ -2,15 +2,27 @@ import { handleSessionCompleted } from "@/lib/payments";
 import { NextResponse,NextRequest } from "next/server";
 import Stripe from "stripe"
 
-const stripe= new Stripe(process.env.STRIPE_SECRET_KEY!) //thsi syntax should be exact same 
-
 export const POST= async(req: NextRequest)=>{
+  // Initialize Stripe inside the function to ensure env vars are available
+  const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
+  const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
+
+  if (!stripeSecretKey) {
+    console.error("STRIPE_SECRET_KEY environment variable is not set");
+    return NextResponse.json({error: "Server configuration error"}, {status: 500});
+  }
+
+  if (!webhookSecret) {
+    console.error("STRIPE_WEBHOOK_SECRET environment variable is not set");
+    return NextResponse.json({error: "Server configuration error"}, {status: 500});
+  }
+
+  const stripe = new Stripe(stripeSecretKey);
 
       console.log("webhook started")
 
     const payload= await req.text()
     const signature = req.headers.get('stripe-signature');
-    const endpoint= process.env.STRIPE_WEBHOOK_SECRET!
 
 
     console.log("webhook called")
@@ -21,7 +33,7 @@ export const POST= async(req: NextRequest)=>{
          event = stripe.webhooks.constructEvent(
         payload,
         signature!,
-        endpoint,
+        webhookSecret,
       );
         
     }
