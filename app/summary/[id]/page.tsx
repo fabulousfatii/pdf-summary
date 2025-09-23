@@ -4,13 +4,13 @@ import SummaryCard from "@/components/SummaryCard";
 import { fetchSummary } from "@/lib/summariesFunction";
 
 interface PageProps {
-  params: { id: string };
-  searchParams?: { [key: string]: string | string[] | undefined };
+  params: Promise<{ id: string }>;
+  searchParams?: Promise<{ [key: string]: string | string[] | undefined }>;
 }
 
 
 export default async function SummaryPage({ params }: PageProps) {
-  const { id } = params;
+  const { id } = await params;
 
 if (!id) {
         console.log("userid is not defined yet");
@@ -19,8 +19,8 @@ if (!id) {
     const summary=  await fetchSummary(id)
 
 
-    return(
-            <div className="min-h-screen bg-gradient-to-br from-purple-100 via-pink-50 to-blue-100">
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-purple-100 via-pink-50 to-blue-100">
       <div className="container mx-auto px-4 py-12">
         {/* Header */}
         <div className="mb-8">
@@ -65,9 +65,8 @@ if (!id) {
           </div>
         )}
 
-        </div>
-        </div>
-    
-)
+      </div>
+    </div>
+  );
 }
 
