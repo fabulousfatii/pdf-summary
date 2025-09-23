@@ -137,7 +137,7 @@ function AuthForm({type}:{type:string}) {
               ? "Don't have an account?"
               : "Already have an account?"}
             </p>
-            <Link href={type === 'sign-in' ? '/sign-up' : '/sign-in'} className="form-link">
+            <Link href={type === 'sign-in' ? '/sign-up' : '/sign-in'} className="form-link text-white">
               {type === 'sign-in' ? 'Sign up' : 'Sign in'}
             </Link>
           </footer>
