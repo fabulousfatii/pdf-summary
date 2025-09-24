@@ -11,6 +11,7 @@ const Header = () => {
 //   const router = useRouter();
 const pathname= usePathname()
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  // const router = useRouter()
 
 const { data: session } = useSession()
     const user: User = session?.user
@@ -129,12 +130,12 @@ const { data: session } = useSession()
                 </div>
                 
                 {userid ? (
-                <button className="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200">
+                <Link href={"/"} className="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200">
                   Logout
-                  </button>) :(
-                    <button className="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200">
+                  </Link>) :(
+                    <Link href={"/signin"} className="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200">
                   Sign in
-                </button>
+                </Link>
                   )
                  }
               </div>
