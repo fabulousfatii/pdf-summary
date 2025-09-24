@@ -7,6 +7,7 @@ import { useUploadThing } from '@/lib/uploadthing';
 import { generatePdfSummary, savedSummary } from '@/actions/upload-actions';
 import { useSession } from "next-auth/react";
 import { User } from "next-auth";
+import Link from "next/link"
 
 interface UploadedFile {
   id: string;
@@ -191,12 +192,19 @@ if (e.target.files && e.target.files[0]) {
               or click to browse from your computer
             </p>
             
-            <button
+           {user?(
+             <button
               onClick={() => fileInputRef.current?.click()}
               className="bg-gradient-to-r from-pink-500 to-purple-600 text-white px-8 py-3 rounded-full font-semibold text-lg shadow-lg hover:from-pink-600 hover:to-purple-700 transition-all duration-200 transform hover:scale-105"
             >
               Choose Files
             </button>
+           ):(
+             <Link href={"/signin"} 
+              className="bg-gradient-to-r from-pink-500 to-purple-600 text-white px-8 py-3 rounded-full font-semibold text-lg shadow-lg hover:from-pink-600 hover:to-purple-700 transition-all duration-200 transform hover:scale-105"
+            >
+              sign in to upload 
+            </Link>           )}
             
             <input
               ref={fileInputRef}

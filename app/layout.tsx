@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import AuthProvider from "@/providers/authProvider";
 import Header from "@/components/header";
+import Footer from "@/components/Footer";
 
 
 
@@ -25,6 +26,7 @@ export default function RootLayout({
       >
     <Header />
          {children}
+  <Footer/>     
       </body>
               </AuthProvider>
     </html>

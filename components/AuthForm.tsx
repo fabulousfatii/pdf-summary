@@ -82,6 +82,7 @@ function AuthForm({type}:{type:string}) {
 
       if (!res.ok) throw new Error(data.error || "Something went wrong");
       setIsLoading(false)
+      router.push('/signin')
 
         }catch(error){
 
@@ -98,7 +99,7 @@ function AuthForm({type}:{type:string}) {
   return (
     <>
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 flex flex-col ">
               {type === 'sign-up' && (
                 <>
                   <div className="flex gap-4">
