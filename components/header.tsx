@@ -5,6 +5,8 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useSession } from "next-auth/react";
 import { User } from "next-auth";
+import { signOut } from "next-auth/react"
+
 
 
 const Header = () => {
@@ -27,6 +29,11 @@ const { data: session } = useSession()
   ];
 
   const isActive = (path:string) => pathname === path;
+
+  const signOutFunction =()=>{
+    console.log("clicked")
+    signOut({ callbackUrl: '/' }) 
+  }
 
   return (
     <header className="bg-white shadow-sm border-b border-gray-100">
@@ -78,12 +85,12 @@ const { data: session } = useSession()
             </div>
             
               {userid ? (
-                <button className="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200">
+                <button onClick={()=> signOutFunction()} className="text-gray-600 cursor-pointer hover:text-gray-900 font-medium transition-colors duration-200">
                   Logout
                   </button>) :(
-                    <button className="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200">
+                    <Link href={"/signin"} className="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200">
                   Sign in
-                </button>
+                </Link>
                   )
                  }
           </div>
@@ -130,10 +137,10 @@ const { data: session } = useSession()
                 </div>
                 
                 {userid ? (
-                <Link href={"/"} className="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200">
+                <button onClick={()=> signOutFunction()} className="text-gray-600 cursor-pointer hover:text-gray-900 font-medium transition-colors duration-200">
                   Logout
-                  </Link>) :(
-                    <Link href={"/signin"} className="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200">
+                  </button>) :(
+                    <Link href={"/signin"} className="text-gray-600 cursor-pointer hover:text-gray-900 font-medium transition-colors duration-200">
                   Sign in
                 </Link>
                   )
